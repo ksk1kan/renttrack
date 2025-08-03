@@ -1,0 +1,104 @@
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Rent A Car Takip</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="car-icon.png">
+
+    <link rel="manifest" href="manifest.json">
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('service-worker.js')
+                .then(reg => console.log("Service Worker registered", reg))
+                .catch(err => console.error("Service Worker failed", err));
+            });
+        }
+    </script>
+</head>
+<body data-theme="dark">
+    <div class="theme-toggle" onclick="toggleTheme()" title="Temayı Değiştir">
+        💡
+    </div>
+    <div class="container">
+        <h1>🚘 Rent A Car Takip</h1>
+        <div class="form-grid">
+            <div>
+                <label for="client">Kişi Seç:</label>
+                <select id="client">
+                    <option value="">Kişi Seç</option>
+                    <option value="Ella Rent A Car - Okay">Ella Rent A Car - Okay</option>
+                    <option value="Yakamoz Adem">Yakamoz Adem</option>
+                    <option value="Barış Özgür Tatilevleri">Barış Özgür Tatilevleri</option>
+                    <option value="Levissi Rent A Car - Erdem Demirci">Levissi Rent A Car - Erdem Demirci</option>
+                </select>
+            </div>
+            <div>
+                <label for="fullName">Müşteri Adı Soyadı:</label>
+                <input type="text" id="fullName">
+            </div>
+            <div>
+                <label>Veriliş Tarihi - Saat:</label>
+                <div class="inline">
+                    <input type="date" id="startDate">
+                    <input type="time" id="startTime">
+                </div>
+            </div>
+            <div>
+                <label>Alış Tarihi - Saat:</label>
+                <div class="inline">
+                    <input type="date" id="endDate">
+                    <input type="time" id="endTime">
+                </div>
+            </div>
+            <div>
+                <label for="dailyRate">Günlük Ücret (₺):</label>
+                <input type="number" id="dailyRate">
+            </div>
+            <div>
+                <label for="payment">Alınan Ödeme (₺):</label>
+                <input type="number" id="payment">
+            </div>
+            <div>
+                <label for="note">Not:</label>
+                <textarea id="note"></textarea>
+            </div>
+        </div>
+        <button onclick="addRecord()">➕ Ekle</button>
+        <div class="filters">
+            <label for="clientFilter">Kişiye Göre Listele:</label>
+            <select id="clientFilter" onchange="filterByClient()">
+                <option value="">Tümü</option>
+                <option value="Ella Rent A Car - Okay">Ella Rent A Car - Okay</option>
+                <option value="Yakamoz Adem">Yakamoz Adem</option>
+                <option value="Barış Özgür Tatilevleri">Barış Özgür Tatilevleri</option>
+                <option value="Levissi Rent A Car - Erdem Demirci">Levissi Rent A Car - Erdem Demirci</option>
+            </select>
+            <button onclick="exportExcel()">📤 Excel Aktar</button>
+        </div>
+        <table id="records">
+            <thead>
+                <tr>
+                    <th>Kişi</th>
+                    <th>Ad Soyad</th>
+                    <th>Veriliş</th>
+                    <th>Alış</th>
+                    <th>Gün</th>
+                    <th>Günlük Ücret</th>
+                    <th>Toplam</th>
+                    <th>Ödeme</th>
+                    <th>Kalan</th>
+                    <th>Not</th>
+                    <th>Sil</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        <div id="totals"></div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

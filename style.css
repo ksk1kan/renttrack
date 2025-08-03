@@ -1,0 +1,101 @@
+
+:root {
+    --bg-dark: #1e1e2f;
+    --bg-light: #f2f2f2;
+    --text-dark: #eee;
+    --text-light: #222;
+    --accent: #00ffff;
+}
+
+body[data-theme="dark"] {
+    background: var(--bg-dark);
+    color: var(--text-dark);
+}
+
+body[data-theme="light"] {
+    background: var(--bg-light);
+    color: var(--text-light);
+}
+
+.container {
+    max-width: 1080px;
+    margin: auto;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    color: var(--accent);
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 15px;
+}
+
+.inline {
+    display: flex;
+    gap: 5px;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    background-color: white;
+}
+
+button {
+    margin-top: 10px;
+    padding: 10px;
+    width: 100%;
+    background-color: var(--accent);
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    font-size: 0.95em;
+}
+
+th, td {
+    border: 1px solid #aaa;
+    padding: 8px;
+    text-align: center;
+}
+
+th {
+    background-color: #333;
+    color: white;
+}
+
+.theme-toggle {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.filters {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+#totals {
+    margin-top: 20px;
+    font-size: 1.1em;
+}
+
+#totals div {
+    margin: 5px 0;
+}
